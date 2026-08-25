@@ -4,161 +4,364 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>OKF Files 🎙️</title>
+<title>OKF Files — Audio-Archiv</title>
 <style>
   :root {
-    --bg: #0f0f14;
-    --card: #1a1a22;
-    --card-border: #2a2a35;
-    --text: #f2f2f5;
-    --muted: #9a9aa8;
-    --accent: #ff6b6b;
-    --accent2: #ffd166;
+    --paper: #f2efe6;
+    --paper-line: #d8d2bf;
+    --ink: #1c1c1c;
+    --ink-soft: #4a4a44;
+    --navy: #1b2a4a;
+    --navy-dark: #101a30;
+    --gold: #a8863a;
+    --stamp-red: #8a2b2b;
+    --card: #fbfaf5;
   }
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    padding: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--paper);
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 1px, transparent 1px, transparent 26px);
+    color: var(--ink);
+    font-family: "Georgia", "Times New Roman", serif;
     line-height: 1.5;
   }
-  header {
-    padding: 48px 20px 24px;
+
+  /* header */
+  .band {
+    background: var(--navy);
+    background-image: linear-gradient(180deg, var(--navy), var(--navy-dark));
+    color: #eee6cf;
+    padding: 10px 16px;
+    font-family: "Courier New", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
     text-align: center;
-    background: radial-gradient(circle at top, rgba(255,107,107,0.15), transparent 60%);
+    text-transform: uppercase;
+    border-bottom: 3px solid var(--gold);
   }
+  header {
+    text-align: center;
+    padding: 36px 20px 24px;
+    border-bottom: 4px double var(--ink);
+    position: relative;
+  }
+  .seal {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    border: 3px solid var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 35% 30%, #fff, var(--paper) 70%);
+  }
+  .seal svg { width: 34px; height: 34px; fill: var(--navy); }
   header h1 {
-    font-size: 2rem;
-    margin: 0 0 8px;
+    font-size: 1.9rem;
+    margin: 0 0 6px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--navy);
   }
-  header p {
-    color: var(--muted);
-    margin: 0;
-    font-size: 1rem;
-    max-width: 480px;
-    margin-inline: auto;
+  header .subtitle {
+    font-family: "Courier New", monospace;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
   }
+  header .stamp {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 4px 14px;
+    border: 2px solid var(--stamp-red);
+    color: var(--stamp-red);
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    font-size: 0.7rem;
+    transform: rotate(-2deg);
+    text-transform: uppercase;
+  }
+
   main {
-    max-width: 640px;
+    max-width: 720px;
     margin: 0 auto;
-    padding: 12px 16px 60px;
+    padding: 28px 18px 70px;
   }
+
+  /* search */
+  .search-block {
+    background: var(--card);
+    border: 1px solid var(--ink);
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.12);
+    padding: 16px 18px;
+    margin-bottom: 30px;
+  }
+  .search-block label {
+    display: block;
+    font-family: "Courier New", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .search-row {
+    display: flex;
+    gap: 8px;
+  }
+  #search {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid var(--ink-soft);
+    background: #fff;
+    font-family: "Courier New", monospace;
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+  #search:focus { outline: 2px solid var(--navy); }
+  .search-hint {
+    margin-top: 8px;
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    font-family: "Courier New", monospace;
+  }
+  #result-count {
+    font-weight: bold;
+    color: var(--navy);
+  }
+  #no-results {
+    display: none;
+    font-family: "Courier New", monospace;
+    color: var(--stamp-red);
+    text-align: center;
+    padding: 24px 0;
+    border: 1px dashed var(--stamp-red);
+    margin-bottom: 30px;
+  }
+
+  /* toc */
+  .index-title {
+    font-family: "Courier New", monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+  }
+
   .episode {
     background: var(--card);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 20px;
+    border: 1px solid var(--ink);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.10);
+    padding: 20px 20px 22px;
+    margin-bottom: 22px;
+    position: relative;
   }
-  .episode .meta {
+  .episode.hidden { display: none; }
+  .file-row {
     display: flex;
-    align-items: baseline;
     justify-content: space-between;
-    gap: 8px;
-    margin-bottom: 6px;
+    align-items: baseline;
     flex-wrap: wrap;
-  }
-  .episode .date {
-    font-weight: 700;
-    font-size: 1.05rem;
-    color: var(--accent2);
-  }
-  .episode .tag {
-    font-size: 0.75rem;
-    color: var(--muted);
+    gap: 6px;
+    font-family: "Courier New", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--paper-line);
+    padding-bottom: 8px;
+    margin-bottom: 10px;
   }
-  .episode p.overview {
-    margin: 8px 0 16px;
-    color: var(--text);
-    font-size: 0.98rem;
+  .file-row .file-no { color: var(--navy); font-weight: bold; }
+  .episode .date {
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: var(--navy);
+    margin: 0 0 8px;
+  }
+  .episode .overview {
+    margin: 0 0 14px;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+  .names {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .name-tag {
+    font-family: "Courier New", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    background: var(--navy);
+    color: #eee6cf;
+    padding: 2px 8px;
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+  .name-tag.match {
+    background: var(--stamp-red);
   }
   .episode iframe {
     width: 100%;
     height: 80px;
-    border: none;
-    border-radius: 10px;
+    border: 1px solid var(--ink-soft);
     background: #000;
   }
+
   footer {
     text-align: center;
-    color: var(--muted);
-    font-size: 0.8rem;
-    padding: 20px;
+    font-family: "Courier New", monospace;
+    color: var(--ink-soft);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    padding: 24px 20px 40px;
+    text-transform: uppercase;
   }
 </style>
 </head>
 <body>
 
+<div class="band">Nicht-öffentliches Archiv · Zugriff nur über direkten Link</div>
+
 <header>
-  <h1>🎙️ OKF Files</h1>
-  <p>Unbearbeitete Wahrheiten, fragwürdige Entscheidungen und mindestens ein Mikrofon, das nie funktioniert hat. Zum Reinhören auf die Kurzfassung klicken, den Rest lieber sich denken.</p>
+  <div class="seal">
+    <svg viewBox="0 0 24 24"><path d="M12 2l2.4 4.86 5.36.78-3.88 3.78.92 5.34L12 14.27l-4.8 2.49.92-5.34L4.24 7.64l5.36-.78L12 2z"/></svg>
+  </div>
+  <h1>OKF Files</h1>
+  <div class="subtitle">Audio-Archiv &middot; Interner Bestand &middot; Akten 001&ndash;006</div>
+  <div class="stamp">nur für den kleinen Kreis</div>
 </header>
 
 <main>
 
-  <div class="episode">
-    <div class="meta">
-      <span class="date">5. Mai · 14:12</span>
-      <span class="tag">Folge</span>
+  <div class="search-block">
+    <label for="search">Suche nach Namen in den Akten</label>
+    <div class="search-row">
+      <input type="text" id="search" placeholder="z. B. Noah, Eli, Angie …" autocomplete="off">
+    </div>
+    <div class="search-hint"><span id="result-count">6</span> von 6 Akten angezeigt</div>
+  </div>
+
+  <div id="no-results">— KEINE TREFFER IN DIESEM BESTAND —</div>
+
+  <div class="index-title">Akten-Verzeichnis</div>
+
+  <div class="episode" data-names="">
+    <div class="file-row">
+      <span class="file-no">Akte Nr. 001</span>
+      <span>5. Mai · 14:12 Uhr</span>
     </div>
     <p class="overview">🎬 Der Fehlstart, der Podcast-Geschichte schreiben wird: ein herzhaftes "Hallo!" – und dann totale Funkstille. Rekordverdächtig kurze Laufzeit.</p>
+    <div class="names"></div>
     <iframe src="https://drive.google.com/file/d/1Nk_CFxUZEEktOKyK-QydvseIYts_TeQb/preview" allow="autoplay"></iframe>
   </div>
 
-  <div class="episode">
-    <div class="meta">
-      <span class="date">5. Mai · 14:13</span>
-      <span class="tag">Folge</span>
+  <div class="episode" data-names="">
+    <div class="file-row">
+      <span class="file-no">Akte Nr. 002</span>
+      <span>5. Mai · 14:13 Uhr</span>
     </div>
     <p class="overview">🤐 Zweiter Versuch, gleicher Tag. Was hier wirklich besprochen wurde, bleibt Staatsgeheimnis (kein Transkript verfügbar) – reinhören auf eigene Gefahr.</p>
+    <div class="names"></div>
     <iframe src="https://drive.google.com/file/d/1VZp_zh5zR60aY9SFwa-VBasz5_Ad38nN/preview" allow="autoplay"></iframe>
   </div>
 
-  <div class="episode">
-    <div class="meta">
-      <span class="date">5. Mai · 14:30</span>
-      <span class="tag">Folge</span>
+  <div class="episode" data-names="Johannes, Noah, Loki, Niklas, Valeria">
+    <div class="file-row">
+      <span class="file-no">Akte Nr. 003</span>
+      <span>5. Mai · 14:30 Uhr</span>
     </div>
     <p class="overview">💃 Von der Hausparty direkt in die Flirt-Beratung: Tipps, die niemand angefordert hat, ein Loki-Comeback-Special und eine zufällige Begegnung, die für ordentlich Chaos sorgt.</p>
+    <div class="names"></div>
     <iframe src="https://drive.google.com/file/d/1OMfgnbT1m2JVfAxoVOAzu65I8FDCmO1h/preview" allow="autoplay"></iframe>
   </div>
 
-  <div class="episode">
-    <div class="meta">
-      <span class="date">7. Mai · 21:48</span>
-      <span class="tag">Folge</span>
+  <div class="episode" data-names="Johannes">
+    <div class="file-row">
+      <span class="file-no">Akte Nr. 004</span>
+      <span>7. Mai · 21:48 Uhr</span>
     </div>
     <p class="overview">🎤 Die Mikros sind tot, die Motivation lebt: Intro-Versuch Nummer 3, dieses Mal mit echtem Content-Anspruch. Fast.</p>
+    <div class="names"></div>
     <iframe src="https://drive.google.com/file/d/1g1B9reCEZ3hHfX-jaXiDGg_Q_RIRWk2u/preview" allow="autoplay"></iframe>
   </div>
 
-  <div class="episode">
-    <div class="meta">
-      <span class="date">7. Mai · 21:52</span>
-      <span class="tag">Folge</span>
+  <div class="episode" data-names="Johannes, Eli, Noah, Angie, Alana, Thomas, Emilia, Jovan, Tara, Adriano, Aurel, Elijah, Maxim, Eliana, Danilo, Andrea, Ivano, Aurora, Chiara, Fabian, Nevio, Samuel">
+    <div class="file-row">
+      <span class="file-no">Akte Nr. 005</span>
+      <span>7. Mai · 21:52 Uhr</span>
     </div>
-    <p class="overview">🎧 Die lang ersehnte Eli-Story (ja, DER SoundCloud-Rapper) wird endlich aufgerollt, gefolgt von einer hitzigen Namens-Ranking-Session, bei der Emilia, Adriano & Co. gnadenlos bewertet werden. Bonus: eine Fahrstil-Analyse von Johannes, die ihn nicht gut aussehen lässt.</p>
+    <p class="overview">🎧 Die lang ersehnte Eli-Story (ja, DER SoundCloud-Rapper) wird endlich aufgerollt, gefolgt von einer hitzigen Namens-Ranking-Session, bei der Emilia, Adriano &amp; Co. gnadenlos bewertet werden. Bonus: eine Fahrstil-Analyse von Johannes, die ihn nicht gut aussehen lässt.</p>
+    <div class="names"></div>
     <iframe src="https://drive.google.com/file/d/133xlcrVe1RDn6lp59-E1vGuA34P_ScfK/preview" allow="autoplay"></iframe>
   </div>
 
-  <div class="episode">
-    <div class="meta">
-      <span class="date">10. Mai · 14:33</span>
-      <span class="tag">Folge</span>
+  <div class="episode" data-names="Elias, Angie, Eli, Alana, Katha, Lukas, Johannes">
+    <div class="file-row">
+      <span class="file-no">Akte Nr. 006</span>
+      <span>10. Mai · 14:33 Uhr</span>
     </div>
     <p class="overview">🥾 Aufgenommen mitten auf einer Wanderung, weil Bergluft bekanntlich lose Zungen macht: eine Dating-Geschichte im Rückblick, eine Analyse der Gruppendynamik und eine hitzige Grundsatzdebatte über Verlobungsringe, Traumhochzeiten und den perfekten Antrag.</p>
+    <div class="names"></div>
     <iframe src="https://drive.google.com/file/d/1HS9YPs0pPR6LdVRqN3imAKrURtEYgq6p/preview" allow="autoplay"></iframe>
   </div>
 
 </main>
 
-<footer>
-  nur für den kleinen Kreis 🤫 · nicht indexiert
-</footer>
+<footer>Ende des Bestands &middot; 6 Akten &middot; nicht indexiert</footer>
+
+<script>
+(function() {
+  var episodes = Array.prototype.slice.call(document.querySelectorAll('.episode'));
+  var input = document.getElementById('search');
+  var countEl = document.getElementById('result-count');
+  var noResults = document.getElementById('no-results');
+
+  // render name tags per episode
+  episodes.forEach(function(ep) {
+    var namesAttr = ep.getAttribute('data-names') || '';
+    var names = namesAttr.split(',').map(function(n){ return n.trim(); }).filter(Boolean);
+    var wrap = ep.querySelector('.names');
+    names.forEach(function(n) {
+      var tag = document.createElement('span');
+      tag.className = 'name-tag';
+      tag.textContent = n;
+      wrap.appendChild(tag);
+    });
+  });
+
+  function filter() {
+    var q = input.value.trim().toLowerCase();
+    var visible = 0;
+    episodes.forEach(function(ep) {
+      var names = (ep.getAttribute('data-names') || '').toLowerCase();
+      var overview = ep.querySelector('.overview').textContent.toLowerCase();
+      var match = !q || names.indexOf(q) !== -1 || overview.indexOf(q) !== -1;
+      ep.classList.toggle('hidden', !match);
+      if (match) visible++;
+
+      ep.querySelectorAll('.name-tag').forEach(function(tag) {
+        var isMatch = q && tag.textContent.toLowerCase().indexOf(q) !== -1;
+        tag.classList.toggle('match', isMatch);
+      });
+    });
+    countEl.textContent = visible;
+    noResults.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  input.addEventListener('input', filter);
+  filter();
+})();
+</script>
 
 </body>
 </html>
